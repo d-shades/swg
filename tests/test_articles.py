@@ -31,11 +31,19 @@ def test_get_article_body():
     """
     Function get_article_body should return expected string corresponding to the article's body
     """
-    test_article = "---\narticle_title: titulo"
-    test_article += "\narticle_subtitle: subtitulo"
-    test_article += "\n---\ntext\n"
+    test_article = """
+        ---
+        title: Example Article
+        date: 2023-07-08
+        ---
+        
+        This is the body of the article.
+        """
 
-    body = get_article_body(test_article)
-    assert "\n---\ntext\n" == body
+    expected_body = "This is the body of the article."
+
+    gathered_body = get_article_body(test_article)
+
+    assert expected_body == gathered_body
 
 
