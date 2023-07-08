@@ -1,5 +1,5 @@
 from swg.render import render_article
-from swg.articles import get_article_metadata
+from swg.articles import get_article_metadata, get_article_body
 from swg import settings
 import os
 from pathlib import Path
@@ -26,3 +26,16 @@ def test_get_article_metadata():
     assert "article_subtitle" in metadata
     assert metadata["article_title"] == "titulo"
     assert metadata["article_subtitle"] == "subtitulo"
+ 
+def test_get_article_body():
+    """
+    Function get_article_body should return expected string corresponding to the article's body
+    """
+    test_article = "---\narticle_title: titulo"
+    test_article += "\narticle_subtitle: subtitulo"
+    test_article += "\n---\ntext\n"
+
+    body = get_article_body(test_article)
+    assert "\n---\ntext\n" == body
+
+
