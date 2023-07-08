@@ -1,9 +1,8 @@
-from swg.render import render_article
 from swg.articles import get_article_metadata
+from swg.articles import get_all_articles_path_from_dir
 from swg import settings
-import os
 from pathlib import Path
-
+import os
 import pytest
 
 @pytest.fixture
@@ -26,3 +25,9 @@ def test_get_article_metadata():
     assert "article_subtitle" in metadata
     assert metadata["article_title"] == "titulo"
     assert metadata["article_subtitle"] == "subtitulo"
+
+def test_get_all_articles_path_from_dir():
+    pathdir = settings.ORIGIN_DIRNAME
+    expected_paths = f'{pathdir}\\article1.md'
+
+    assert get_all_articles_path_from_dir(pathdir) == [expected_paths]
