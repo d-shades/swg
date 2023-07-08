@@ -18,15 +18,13 @@ def get_article_metadata(article: str) -> dict:
 
     Example
     -------
-    >>> test_article = "---\narticle_title: titulo"
+    test_article = "---\narticle_title: titulo"
+    test_article += "\narticle_subtitle: subtitulo"
+    test_article += "\n---\ntext\n"
 
-    >>> test_article += "\narticle_subtitle: subtitulo"
+    metadata = get_article_metadata(test_article)
 
-    >>> test_article += "\n---\ntext\n"
-
-    >>> metadata = get_article_metadata(test_article)
-
-    >>> metadata
+    metadata
     {'article_title': 'titulo', 'article_subtitle': 'subtitulo'}
     
     """
