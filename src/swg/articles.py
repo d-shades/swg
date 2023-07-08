@@ -53,3 +53,10 @@ def get_all_articles_path_from_dir(dirpath: str) -> list[str]:
         if os.path.isfile(filepath):
             articles_path.append(filepath)
     return articles_path
+
+
+def get_article_from_path(path: str) -> str:
+    with open(path,"r") as art:
+        text = art.read()
+        return text
+
