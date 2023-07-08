@@ -26,8 +26,20 @@ def test_get_article_metadata():
     assert metadata["article_title"] == "titulo"
     assert metadata["article_subtitle"] == "subtitulo"
 
-def test_get_all_articles_path_from_dir():
-    pathdir = settings.ORIGIN_DIRNAME
-    expected_paths = f'{pathdir}\\article1.md'
 
-    assert get_all_articles_path_from_dir(pathdir) == [expected_paths]
+def test_get_all_articles_path_from_dir():
+    pathdir = '\\articlestests'
+    files_names = ['article1.md', 'article2.md', 'article3.md']
+    if not os.path.exists(pathdir):
+        os.mkdir(pathdir)
+    
+    for file_name in files_names:
+        file_path = os.path.join(pathdir, file_name)
+        with open(file_path, 'w') as file:
+            pass
+    
+    expected_paths = [f'{pathdir}\\article1.md',
+        f'{pathdir}\\article2.md', f'{pathdir}\\article3.md'
+        ]
+    
+    assert get_all_articles_path_from_dir(pathdir) == expected_paths
